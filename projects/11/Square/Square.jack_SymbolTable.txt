@@ -1,0 +1,6 @@
+ClassScope 
+x|int|FIELD|0
+y|int|FIELD|1
+size|int|FIELD|2
+SubRoutineScope 
+this|Square|ARG|0

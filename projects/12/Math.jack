@@ -1,0 +1,264 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Math.jack
+
+/**
+ * A library of commonly used mathematical functions.
+ * Note: Jack compilers implement multiplication and division using OS method calls.
+ */
+class Math {
+	
+	static Array twoToThe; 
+
+    /** Initializes the library. */
+    function void init() {
+		
+		let twoToThe = Array.new(16);
+		
+		let twoToThe[0] = 1; // 2^0
+		let twoToThe[1] = 2; // 2^1
+		let twoToThe[2] = 4; // 2^2
+		let twoToThe[3] = 8; // 2^3
+		let twoToThe[4] = 16; // 2^4
+		let twoToThe[5] = 32; //2^5
+		let twoToThe[6] = 64; //2^6
+		let twoToThe[7] = 128; //2^7
+		let twoToThe[8] = 256; //2^8
+		let twoToThe[9] = 512; //2^9
+		let twoToThe[10] = 1024; //2^10
+		let twoToThe[11] = 2048; //2^11
+		let twoToThe[12] = 4096; //2^12
+		let twoToThe[13] = 8192; //2^13
+		let twoToThe[14] = 16384; //2^14
+		let twoToThe[15] = 32767 + 1; //2^15
+		
+		return;
+    }
+
+    /** Returns the absolute value of x. */
+    function int abs(int x) {
+	
+		var int absx;
+		
+		if (x < 0) {
+			let absx = ~(x) + 1; //Perform 2's complement to invert the value
+		}
+		else {
+			let absx = x;
+		}
+		
+		return absx;
+    }
+
+    /** Returns the product of x and y. 
+     *  When a Jack compiler detects the multiplication operator '*' in the 
+     *  program's code, it handles it by invoking this method. In other words,
+     *  the Jack expressions x*y and multiply(x,y) return the same value.
+     */
+    function int multiply(int x, int y) {
+		
+		var int sum, shiftedX, nBit;
+		var boolean Negative;
+		var boolean Bit;
+		let sum = 0;
+		let nBit = 0;
+		
+		//Check for negative values
+		if (((x < 0) & (y > 0)) | ((x > 0) & (y < 0))){
+			let Negative = true;
+		}
+		else {
+			let Negative = false;
+		}
+		
+		let x = Math.abs(x);
+		let y = Math.abs(y);
+		let shiftedX = x;
+		
+		while (nBit < 15) {
+			
+			let Bit = Math.bit(y, nBit);
+			
+			if (Bit) {
+				let sum = sum + shiftedX;
+			}
+			
+			let shiftedX = shiftedX + shiftedX;
+			let nBit = nBit + 1;
+		
+		}
+		
+		if (Negative){
+			let sum = ~(sum) + 1;
+		}
+		
+		return sum;
+    }
+
+    /** Returns the integer part of x/y.
+     *  When a Jack compiler detects the multiplication operator '/' in the 
+     *  program's code, it handles it by invoking this method. In other words,
+     *  the Jack expressions x/y and divide(x,y) return the same value.
+     */
+	function int divide(int x, int y) {
+		
+		var boolean Negative;
+		var int q, div, cond;
+		
+		//Check for negative values
+		if (((x < 0) & (y > 0)) | ((x > 0) & (y < 0))){
+			let Negative = true;
+		}
+		else {
+			let Negative = false;
+		}
+		
+		let x = Math.abs(x);
+		let y = Math.abs(y);
+		
+		if (y > x){
+			return 0;
+		}
+		
+		let q = Math.divide(x, (y + y));
+		
+		if (q = 0){
+			let cond = x;
+		}
+		else {
+			let cond = q * y;
+			let cond = x - (cond + cond);
+		}
+		
+//		let cond = q * y;
+//		let cond = x - (cond + cond);
+		
+		if (cond < y){
+			let div = (q + q);
+		}
+		else {
+			let div = ((q + q) + 1);
+		}
+		
+		if (Negative){
+			let div = ~(div) + 1;
+		}
+		
+		return div;
+	}
+
+    /** Returns the integer part of the square root of x. */
+	function int sqrt(int x) {
+		
+		var int y, nBit, j, cond;
+		var Array twoPowJ;
+		
+		let twoPowJ = Array.new(8);
+		
+		let twoPowJ[0] = 1;
+		let twoPowJ[1] = 1;
+		let twoPowJ[2] = 3;
+		let twoPowJ[3] = 6;
+		let twoPowJ[4] = 11;
+		let twoPowJ[5] = 23;
+		let twoPowJ[6] = 45;
+		let twoPowJ[7] = 91;
+		
+		let y = 0;
+		let nBit = 16;
+		let j = (nBit / 2) - 1;
+		
+		while (j > -1){
+		
+			let cond = y + twoPowJ[j];
+			let cond = cond * cond;
+			
+			if ((cond < x) | (cond = x)){
+			
+				let y = y + twoPowJ[j];
+				
+			}
+			
+			let j = j - 1;
+			
+		}
+		
+		return y;
+		
+	}
+		
+	/** Returns x^exp */
+	function int Power(int x, int exp) {
+		
+		var int sum, n;
+		let sum = x;
+		let n = 1;
+		
+		if (exp = 0){
+			return 1;
+		}
+		
+		while (n < exp){
+			
+			let sum = sum * x;
+			let n = n + 1;
+			
+		}
+	
+		return sum;
+	
+	}
+	
+    /** Returns the greater number. */
+    function int max(int a, int b) {
+		
+		var int max;
+		
+		if (a < b) {
+			let max = b;
+		}
+		else {
+			let max = a;
+		}
+		
+		return max;
+   }
+
+    /** Returns the smaller number. */
+    function int min(int a, int b) {
+		
+		var int min;
+		
+		if (a < b) {
+			let min = a;
+		}
+		else {
+			let min = b;
+		}
+		
+		return min;
+	
+    }
+	
+	
+	/** Returns true if the j-th bit of the integer x is 1 and false otherwise */
+	function boolean bit(int x, int j) {
+		
+		var boolean bit;
+		var int temp;
+		
+		//Perform a bitwise AND operation - result will be zero if False
+		let temp = (x & twoToThe[j]);
+		
+		if (temp = 0) {
+			let bit = false;	
+		}
+		else{
+			let bit = true;
+		}
+		
+		return bit;
+		
+	}
+}

@@ -1,0 +1,5 @@
+ClassScope 
+PlayerScore|int|FIELD|0
+AIScore|int|FIELD|1
+SubRoutineScope 
+this|Score|ARG|0

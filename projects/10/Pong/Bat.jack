@@ -1,0 +1,62 @@
+
+/** Implements a bat. */
+class Bat {
+
+   field int x, y, speed; // screen location of the bat's top-left corner
+   
+   
+   /** Constructs a new bat with a given location and size. */
+   constructor Bat new(int Ax, int Ay, int Sp) {
+      let x = Ax;
+      let y = Ay;
+	  let speed = Sp;
+      do draw();
+      return this;
+   }
+ 
+      /** Accessors. */
+   method int getBatx() { return x; }
+   method int getBaty() { return y; } 
+   
+   /** Disposes this bat. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   /** Draws the bat on the screen. */
+   method void draw() {
+      do Screen.setColor(false);
+      do Screen.drawRectangle(x, y, x + 5, y + 50);
+      return;
+   }
+
+   /** Erases the bat from the screen. */
+   method void erase() {
+      do Screen.setColor(true);
+      do Screen.drawRectangle(x, y, x + 5, y + 50);
+      return;
+   }
+
+
+   /** Moves the bat up by 'speed' pixels. */
+   method void moveUp() {
+      if (y > 16) {
+         do erase();
+		 let y = y - speed;
+		 do draw();
+      }
+      return;
+   }
+
+   /** Moves the bat down by 'speed' pixels. */
+   method void moveDown() {
+      if ((y + 50) < 238) {
+         do erase();
+		 let y = y + speed;
+		 do draw();
+      }
+      return;
+   }
+   
+}

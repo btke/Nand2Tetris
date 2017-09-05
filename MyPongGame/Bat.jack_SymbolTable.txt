@@ -1,0 +1,6 @@
+ClassScope 
+x|int|FIELD|0
+y|int|FIELD|1
+speed|int|FIELD|2
+SubRoutineScope 
+this|Bat|ARG|0
