@@ -1,0 +1,14 @@
+class Main {
+	field Square square;
+	field int direction;
+	
+   constructor Square new(int Ax, int Ay, int Asize) {
+		var int Test;
+		var int y;
+		
+		let x = Ax;
+		let y = Ay;
+		
+   }
+     
+}

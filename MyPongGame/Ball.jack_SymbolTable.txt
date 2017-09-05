@@ -1,0 +1,16 @@
+ClassScope 
+x|int|FIELD|0
+y|int|FIELD|1
+xDir|int|FIELD|2
+yDir|int|FIELD|3
+Batx|int|FIELD|4
+Baty|int|FIELD|5
+AIBatx|int|FIELD|6
+AIBaty|int|FIELD|7
+score|Score|FIELD|8
+SubRoutineScope 
+this|Ball|ARG|0
+Px|int|ARG|1
+Py|int|ARG|2
+AIx|int|ARG|3
+AIy|int|ARG|4

@@ -1,0 +1,4 @@
+ClassScope 
+SubRoutineScope 
+x|int|VAR|0
+y|int|VAR|1

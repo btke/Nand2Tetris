@@ -1,0 +1,7 @@
+ClassScope 
+square|Square|FIELD|0
+direction|int|FIELD|1
+SubRoutineScope 
+this|SquareGame|ARG|0
+key|char|VAR|0
+exit|boolean|VAR|1

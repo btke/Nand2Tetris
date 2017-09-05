@@ -1,0 +1,49 @@
+<class>
+<keyword> class </keyword>
+<identifier> Square </identifier>
+<symbol> { </symbol>
+<subroutineDec>
+<keyword> method </keyword>
+<keyword> void </keyword>
+<identifier> decSize </identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier> temp </identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier> xxx </identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 12 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> * </symbol>
+<term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 63 </integerConstant>
+</term>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>

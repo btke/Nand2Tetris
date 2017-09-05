@@ -1,0 +1,8 @@
+ClassScope 
+x|int|FIELD|0
+y|int|FIELD|1
+width|int|FIELD|2
+height|int|FIELD|3
+direction|int|FIELD|4
+SubRoutineScope 
+this|Bat|ARG|0

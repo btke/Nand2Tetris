@@ -1,0 +1,138 @@
+// Expression = term (op term)*
+// Example: x + 5
+// Use Symbol Table API (KindOf)
+
+push (memory-location) (index)
+push constant 5
+add
+
+// Example: (x + 5) * 5
+// (expression) (op term)
+// (term op term) (op term)
+
+push (memory-location) (index)
+push constant 5
+add
+push constant 5
+Call math.multiply 2
+
+// Let statement
+// let y = x + 5;
+// let varName = expression;
+
+push (memory-location) (index) //x
+push constant 5
+add
+pop (memory-location) (index) //y
+
+// Return Statement
+// return expression? ;
+// return x + 5;
+
+push (memory-location) (index)
+push constant 5
+add
+return
+
+// Calling Object Constructor
+// subRoutine Call
+// ClassName.SubRoutineName(expressionList)
+// expressionList = expression (, (expression)*)?
+// i.e. let x = Bat.new(5, 6, 10, 13)
+
+push constant 5
+push constant 6
+push constant 10
+push constant 13
+Call Bat.new 4
+pop (memory-location) (index) //pop x
+
+// Calling Object Manipulation
+// subRoutine Call
+// VarName.SubRoutineName(expressionList)
+// expressionList = expression (, (expression)*)?
+// i.e. let y = x.someMethod(5, 6, 10, 13)
+
+push (memory-location) (index) //push x ARG[0]
+push constant 5 //ARG[1]
+push constant 6 //ARG[2]
+push constant 10 //ARG[3]
+push constant 13 //ARG[4]
+Call Bat.someMethod 5 //Bat is typeOf x
+pop (memory-location) (index) //pop y
+
+// If statement
+// if (x + 5 = 7) { let y = 3}
+
+//Evaluate Expression
+push (memory-location) (index) //push x
+push constant 5
+add
+push constant 7
+eq
+neg
+
+//if false, exit statement
+if-goto Else
+
+//if-statement
+push constant 3
+pop (memory-location) (index) //pop y
+
+//continue code
+Label Else
+
+
+// If with Else statement
+// if (x + 5 = 7) { let y = 3} else { let y = 4}
+
+//Evaluate Expression
+push (memory-location) (index) //push x
+push constant 5
+add
+push constant 7
+eq
+neg
+
+//if false, goto Else
+if-goto Else
+
+//if statement
+push constant 3
+pop (memory-location) (index) //pop y
+goto ExitIf
+
+//Else statement
+Label Else
+push constant 4
+pop (memory-location) (index) //pop y
+
+// continue code
+Label ExitIf
+
+
+//while statement
+// x = 1
+// while(x < 5) { let x = x + 1;)
+
+push constant 1
+pop local 0
+
+label While0
+
+push local 0
+push constant 5
+lt
+not
+
+if-goto ExitWhile0
+
+push local 0
+push constant 1
+add
+pop local 0
+
+goto While0
+
+label ExitWhile0
+//Continue code
