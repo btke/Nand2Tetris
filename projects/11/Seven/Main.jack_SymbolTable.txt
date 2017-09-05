@@ -1,2 +1,0 @@
-ClassScope 
-SubRoutineScope 

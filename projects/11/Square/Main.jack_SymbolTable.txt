@@ -1,3 +1,0 @@
-ClassScope 
-SubRoutineScope 
-game|SquareGame|VAR|0

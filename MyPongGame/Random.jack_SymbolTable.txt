@@ -1,6 +1,0 @@
-ClassScope 
-seed|int|STATIC|0
-SubRoutineScope 
-range|int|ARG|0
-mask|int|VAR|0
-ret|int|VAR|1

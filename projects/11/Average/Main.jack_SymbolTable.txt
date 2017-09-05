@@ -1,6 +1,0 @@
-ClassScope 
-SubRoutineScope 
-a|Array|VAR|0
-length|int|VAR|1
-i|int|VAR|2
-sum|int|VAR|3

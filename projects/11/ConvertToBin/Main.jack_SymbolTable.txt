@@ -1,5 +1,0 @@
-ClassScope 
-SubRoutineScope 
-startAddress|int|ARG|0
-length|int|ARG|1
-value|int|ARG|2
