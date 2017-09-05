@@ -1,4 +1,0 @@
-ClassScope 
-SubRoutineScope 
-a|Array|ARG|0
-size|int|ARG|1

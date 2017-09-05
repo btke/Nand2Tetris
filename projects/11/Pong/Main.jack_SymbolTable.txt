@@ -1,3 +1,0 @@
-ClassScope 
-SubRoutineScope 
-game|PongGame|VAR|0
